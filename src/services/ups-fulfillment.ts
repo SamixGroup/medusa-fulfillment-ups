@@ -96,6 +96,21 @@ export default class UPSFulfillmentService extends AbstractFulfillmentService {
     }
   }
 
+  async calculatePriceForAddress(cart: Cart, address: Address) {
+    const upsAddress = this.buildUPSAddress(address);
+    const packages = cart.items.map((item) => this.buildUPSPackage(item));
+
+    try {
+      const shipment_price = await this.client.getRates(upsAddress, packages);
+
+      return +shipment_price * 100;
+    } catch (error) {
+      console.log("UPS ERROR:", log(error?.response?.data ?? error));
+      console.log("UPS ADDRESS:", log(address));
+      console.log("UPS PACKAGES:", log(packages));
+    }
+  }
+
   async createFulfillment() {
     return null;
   }

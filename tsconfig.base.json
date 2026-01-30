@@ -9,11 +9,11 @@
     "experimentalDecorators": true,
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
-    "declaration": false,
+    "declaration": true,
     "sourceMap": false,
     "outDir": "./dist",
     "rootDir": "src",
-    "baseUrl": "src"
+    "baseUrl": "src",
   },
   "exclude": ["node_modules"]
 }
